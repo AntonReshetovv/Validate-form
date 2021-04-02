@@ -15,6 +15,7 @@ export function isValidEmail(email) {
         email.nextElementSibling.textContent = 'Значение «Электронной почты» не является правильным адресом «Электронной почты»'
     } else {
         email.nextElementSibling.textContent = ""
+        return email.value
     }
 }
 
@@ -25,6 +26,7 @@ export function isValidPassword(password) {
         password.nextElementSibling.textContent = "Значение «Пароль» должно содержать минимум 6 символов"
     } else {
         password.nextElementSibling.textContent = ""
+        return password.value
     }
 }
 
@@ -35,5 +37,6 @@ export function isValidConfirmPassword(password, confirmPassword) {
         confirmPassword.nextElementSibling.textContent = "Пароли не совпадают"
     } else {
         confirmPassword.nextElementSibling.textContent = ""
+        return confirmPassword.value
     }
 }
