@@ -1,3 +1,4 @@
+import { Person } from './person'
 import { isValidate, isValidPassword, isValidEmail, isValidConfirmPassword } from './utils'
 import './css/style.css'
 
@@ -19,7 +20,7 @@ password.addEventListener('blur', () => {
 
 confirmPassword.addEventListener('blur', () => {
     isValidConfirmPassword(password, confirmPassword)
-    btn.disabled = !isValidConfirmPassword(password,confirmPassword)
+    btn.disabled = !isValidConfirmPassword(password, confirmPassword)
 })
 
 
@@ -33,11 +34,13 @@ form.addEventListener('submit', (event) => {
         confirmPassword: (password.value === confirmPassword.value) ? true : false,
     }
 
-    console.log(person)
-
     btn.disabled = true
-    email.value = ""
-    password.value = ""
-    confirmPassword.value = ""
-    btn.disabled = false
+    // Асинхронный запрос на сервер , который добавляет в базу данных нового person 
+
+    Person.create(person).then(() => {
+        email.value = ""
+        password.value = ""
+        confirmPassword.value = ""
+        btn.disabled = false
+    })
 })
